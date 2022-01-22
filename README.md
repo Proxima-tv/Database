@@ -10,69 +10,69 @@ Comments(ComID,Author,Comment,Video,ProfileID,VidID)
 Videos(VidID,file,title,likes,dislikes,premium)
 has permissions(UserID,ID)
 
-Tables, Attributes and they're Type's
+Tables, Attributes and they're Type's  
 
-Table : user
+Table : user  
 --------------
-id 				: int Auto Increment Not Null
-username 		: varchar(20) Not Null
-password 		: varchar(100) Not Null
-name 			: varchar(30) Null
-nachname 		: varchar(50) Null
-email 			: varchar(254) Not Null
-profile_likes 	: int Null
-profile_pic 	: blob Null
-profile_id 		: int Not Null
+id 				: int Auto Increment Not Null  
+username 		: varchar(20) Not Null  
+password 		: varchar(100) Not Null  
+name 			: varchar(30) Null  
+nachname 		: varchar(50) Null  
+email 			: varchar(254) Not Null  
+profile_likes 	: int Null  
+profile_pic 	: blob Null  
+profile_id 		: int Not Null  
 
 
-Table : has_permission
+Table : has_permission  
 --------------
-user_id			: int Auto Increment Not Null
-id 				: int Not Null
+user_id			: int Auto Increment Not Null  
+id 				: int Not Null  
 
 
-Table : permissions
+Table : permissions  
 --------------
-user_id			: int Auto Increment Not Null
-permission_nodes: varchar(100) Null
-vip				: boolean Not Null
+user_id			: int Auto Increment Not Null  
+permission_nodes: varchar(100) Null  
+vip				: boolean Not Null  
 
 
-Table : tickets
+Table : tickets  
 --------------
-ticket_id 		: int Auto Increment Not Null
-status 			: varchar(50) Not Null
-author 			: varchar(20) Not Null
-header			: varchar(50) Not Null
-body 			: text Not Null
-assigned_to		: varchar(50) Null
+ticket_id 		: int Auto Increment Not Null  
+status 			: varchar(50) Not Null  
+author 			: varchar(20) Not Null  
+header			: varchar(50) Not Null  
+body 			: text Not Null  
+assigned_to		: varchar(50) Null  
 
 
-Table : profile
+Table : profile  
 --------------
-profile_id		: int Auto Increment Not Null
-user 			: varchar(20) Not Null
-watchtime		: float Not Null
-points			: int Null
-watch_id		: int Not Null
-video			: varchar(255) Not Null
+profile_id		: int Auto Increment Not Null  
+user 			: varchar(20) Not Null  
+watchtime		: float Not Null  
+points			: int Null  
+watch_id		: int Not Null  
+video			: varchar(255) Not Null  
 
 
-Table : comments
+Table : comments  
 --------------
-com_id 			: int Auto Increment Not Null
-author 			: varchar(20) Not Null
-comment			: varchar(300) Not Null
-video 			: varchar(255) Not Null
-profile_id		: int Not Null
-vid_id			: int Not Null
+com_id 			: int Auto Increment Not Null  
+author 			: varchar(20) Not Null  
+comment			: varchar(300) Not Null  
+video 			: varchar(255) Not Null  
+profile_id		: int Not Null  
+vid_id			: int Not Null  
 
 
-Table : videos
+Table : videos  
 --------------
-vid_id			: int Auto Increment Not Null
-file 			: blob Not Null
-title			: varchar(100) Not Null
-likes 			: int Null
-dislikes 		: int Null
-premium			: boolean Null 
+vid_id			: int Auto Increment Not Null  
+file 			: blob Not Null  
+title			: varchar(100) Not Null  
+likes 			: int Null  
+dislikes 		: int Null  
+premium			: boolean Null   
