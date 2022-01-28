@@ -14,28 +14,29 @@ Tables, Attributes and they're Type's
 
 Table : user  
 --------------
-id 				: int Auto Increment Not Null  
-username 		: varchar(20) Not Null  
-password 		: varchar(100) Not Null  
-name 			: varchar(30) Null  
-nachname 		: varchar(50) Null  
-email 			: varchar(254) Not Null  
+id 				      : int Auto Increment Not Null  
+username 		    : varchar(20) Not Null  
+password 		    : varchar(100) Not Null  
+name 			      : varchar(30) Null  
+nachname 		    : varchar(50) Null  
+email 			    : varchar(254) Not Null  
 profile_likes 	: int Null  
-profile_pic 	: blob Null  
-profile_id 		: int Not Null  
+profile_pic 	  : blob Null  
+profile_id 		  : int Not Null  
 
 
 Table : has_permission  
 --------------
-user_id			: int Auto Increment Not Null  
-id 				: int Not Null  
+id 				  : int Auto Increment Not Null  
+user_id			: int Not Null
 
 
 Table : permissions  
 --------------
-user_id			: int Auto Increment Not Null  
-permission_nodes: varchar(100) Null  
-vip				: boolean Not Null  
+id               : int Auto Increment Not Null  
+user_id			     : int NOT NULL
+permission_nodes : varchar(100) Null  
+vip				       : boolean Not Null  
 
 
 Table : tickets  
@@ -79,3 +80,15 @@ dislikes 		: int Null
 clicks      : int Null
 premium			: boolean Null  
 uploaded_on : timestamp(Current_Time)
+
+Table : interactions
+--------------
+id       : int NOT NULL AUTO_INCREMENT
+user_id  : int NOT NULL
+vid_id   : int NOT NULL
+
+Table : watchhistory
+--------------
+id      : int NOT NULL AUTO_INCREMENT,
+user_id : int NOT NULL,
+vid_id  : int NOT NULL,
