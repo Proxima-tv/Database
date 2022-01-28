@@ -4,7 +4,6 @@
 /*!40111 SET SQL_NOTES=0 */;
 CREATE DATABASE /*!32312 IF NOT EXISTS*/ proxima /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE proxima;
-
 DROP TABLE IF EXISTS backup_permissions;
 CREATE TABLE `backup_permissions` (
   `user_id` int NOT NULL AUTO_INCREMENT,
@@ -12,7 +11,6 @@ CREATE TABLE `backup_permissions` (
   `vip` tinyint(1) NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 DROP TABLE IF EXISTS backup_user;
 CREATE TABLE `backup_user` (
   `id` int NOT NULL,
@@ -27,7 +25,6 @@ CREATE TABLE `backup_user` (
   `points` int DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 DROP TABLE IF EXISTS backup_videos;
 CREATE TABLE `backup_videos` (
   `vid_id` int NOT NULL,
@@ -40,7 +37,6 @@ CREATE TABLE `backup_videos` (
   `clicks` int DEFAULT '0' COMMENT 'accumulating per view',
   PRIMARY KEY (`vid_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 DROP TABLE IF EXISTS comments;
 CREATE TABLE `comments` (
   `com_id` int NOT NULL AUTO_INCREMENT,
@@ -52,30 +48,27 @@ CREATE TABLE `comments` (
   `commented_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'always current timestamp',
   PRIMARY KEY (`com_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 DROP TABLE IF EXISTS has_permission;
 CREATE TABLE `has_permission` (
-  `user_id` int NOT NULL AUTO_INCREMENT,
-  `id` int NOT NULL,
-  PRIMARY KEY (`user_id`)
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 DROP TABLE IF EXISTS interaction;
 CREATE TABLE `interaction` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `vid_id` int NOT NULL,
-  `id` int DEFAULT NULL
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 DROP TABLE IF EXISTS permissions;
 CREATE TABLE `permissions` (
-  `user_id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `permission_nodes` varchar(100) DEFAULT NULL,
   `vip` tinyint(1) DEFAULT '0',
-  `id` int DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
+  `user_id` int NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 DROP TABLE IF EXISTS tickets;
 CREATE TABLE `tickets` (
   `ticket_id` int NOT NULL AUTO_INCREMENT,
@@ -86,7 +79,6 @@ CREATE TABLE `tickets` (
   `assigned_to` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ticket_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 DROP TABLE IF EXISTS user;
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -101,7 +93,6 @@ CREATE TABLE `user` (
   `points` int DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 DROP TABLE IF EXISTS videos;
 CREATE TABLE `videos` (
   `vid_id` int NOT NULL AUTO_INCREMENT,
@@ -114,22 +105,13 @@ CREATE TABLE `videos` (
   `clicks` int DEFAULT '0' COMMENT 'accumulating per view',
   PRIMARY KEY (`vid_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 DROP TABLE IF EXISTS watchhistory;
 CREATE TABLE `watchhistory` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `vid_id` int NOT NULL,
-  `id` int DEFAULT NULL
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
-
-
-
-
-
-
-
 INSERT INTO user(id,username,password,name,nachname,email,profile_likes,profile_pic,watchtime,points) VALUES(1,'JJ','wasd','JB','JBD','@gg',0,NULL,0,0),(2,'JJDB','wasd','JB','JBD','@gg',0,NULL,0,0);
 DROP PROCEDURE IF EXISTS permission_backup;
 CREATE PROCEDURE `permission_backup`()
@@ -137,14 +119,12 @@ BEGIN
 INSERT INTO backup_permissions(user_id,permission_nodes,vip)
    SELECT * FROM permission;
 END;
-
 DROP PROCEDURE IF EXISTS user_backup;
 CREATE PROCEDURE `user_backup`()
 BEGIN
-   INSERT INTO backup_user(id,username,password,name,nachname,email,profile_likes,profile_pic,profile_id)
-   SELECT * FROM user ;
+  INSERT INTO backup_user(id,username,password,name,nachname,email,profile_likes,profile_pic,profile_id)
+  SELECT * FROM user ;
 END;
-
 DROP PROCEDURE IF EXISTS videos_backup;
 CREATE PROCEDURE `videos_backup`()
 BEGIN
